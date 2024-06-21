@@ -24,7 +24,7 @@ function Sidebar({
       <aside
         className={`${
           sidebarOpen ? "translate-x-0" : "-translate-x-full xl:translate-x-0"
-        } w-10/12 xl:w-80 z-50 bg-zinc-900 h-[calc(100%-2rem)] transition-all space-y-6 fixed left-0 flex-1 overflow-y-auto`}
+        } w-10/12 xl:w-80 z-50 bg-zinc-900 h-[calc(100%-2rem)] transition-all fixed left-0 flex-1 overflow-y-auto`}
       >
         <Scrollbars
           renderThumbVertical={({ style, ...props }) => (
@@ -40,7 +40,7 @@ function Sidebar({
           autoHideTimeout={1000}
           autoHideDuration={200}
         >
-          <div className="p-12">
+          <div className="p-12 space-y-6">
             {Object.entries(SECTIONS).map(([title, items]) => (
               <div key={title}>
                 <h2 className="text-lg font-semibold">{title}</h2>

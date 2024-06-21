@@ -105,7 +105,7 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <main className="w-full h-dvh overflow-y-scroll  bg-zinc-900 text-zinc-200 flex flex-col">
+    <main className="w-full h-dvh bg-zinc-900 text-zinc-200 flex flex-col">
       <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="flex flex-1">
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />

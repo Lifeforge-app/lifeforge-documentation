@@ -9,29 +9,43 @@ import Deployment from "./contents/getting-started/Deployment.mdx";
 import Colors from "./contents/design-system/Colors.mdx";
 import Boilerplate from "./components/Boilerplate";
 import { MDXComponents } from "mdx/types";
-import { toLinkCase } from "./utils/string";
+import { useState } from "react";
 
 const components: MDXComponents = {
   em(properties) {
     return <i {...properties} />;
   },
   h6(properties) {
-    return <h6 {...properties} className="text-lg font-medium text-teal-500" />;
+    return (
+      <h6 {...properties} className="sm:text-lg font-medium text-teal-500" />
+    );
   },
   h1(properties) {
-    return <h1 {...properties} className="text-4xl mb-8 font-bold mt-2" />;
+    return (
+      <h1
+        {...properties}
+        className="text-3xl sm:text-4xl mb-6 sm:mb-8 font-bold mt-2"
+      />
+    );
   },
   h2(properties) {
-    return <h2 {...properties} className="text-3xl font-semibold mt-12" />;
+    return (
+      <h2
+        {...properties}
+        className="text-2xl sm:text-3xl font-semibold mt-8 sm:mt-12"
+      />
+    );
   },
   p(properties) {
-    return <p {...properties} className="mt-6 text-lg text-zinc-500" />;
+    return (
+      <p {...properties} className="mt-4 sm:mt-6 sm:text-lg text-zinc-500" />
+    );
   },
   hr(properties) {
     return (
       <hr
         {...properties}
-        className="mt-12 mb-8 border-t-[1.5px] border-zinc-800"
+        className="mt-8 mb-4 sm:mt-12 sm:mb-8 border-t-[1.5px] border-zinc-800"
       />
     );
   },
@@ -49,7 +63,7 @@ const components: MDXComponents = {
     return <ul {...properties} className="mt-4 list-disc pl-6 space-y-4" />;
   },
   li(properties) {
-    return <li {...properties} className="text-lg text-zinc-500" />;
+    return <li {...properties} className="sm:text-lg text-zinc-500" />;
   },
   strong(properties) {
     return <strong {...properties} className="font-semibold text-zinc-100" />;
@@ -81,18 +95,20 @@ const components: MDXComponents = {
     return (
       <td
         {...properties}
-        className="text-left px-4 py-2 border-[1.5px] border-zinc-800"
+        className="text-left first:break-all px-4 py-2 border-[1.5px] border-zinc-800"
       />
     );
   },
 };
 
 function App() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <main className="w-full h-dvh overflow-y-scroll  bg-zinc-900 text-zinc-200 flex flex-col">
-      <Header />
+      <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="flex flex-1">
-        <Sidebar />
+        <Sidebar sidebarOpen={sidebarOpen} />
         <Routes>
           <Route
             path="/"

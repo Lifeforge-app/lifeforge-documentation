@@ -19,8 +19,8 @@ function Boilerplate() {
   }, [location]);
 
   return (
-    <article className="flex-1 ml-[20rem] h-full p-12 overflow-y-auto min-h-0">
-      <div className="w-[70%] min-w-0">
+    <article className="flex-1 relative xl:ml-[20rem] h-full p-6 sm:p-12 overflow-y-auto min-h-0">
+      <div className="w-full lg:w-[calc(100%-20rem)] min-w-0">
         <Outlet />
         <NavigationBar />
         <hr className="my-12 border-t-[1.5px] border-zinc-800" />

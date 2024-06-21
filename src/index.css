@@ -19,7 +19,7 @@
 
 code {
   font-family: "JetBrains Mono", monospace;
-  @apply text-zinc-100 break-all text-base;
+  @apply text-zinc-100 break-all text-sm sm:text-base;
 }
 
 article section {

@@ -98,7 +98,7 @@ function NavigationBar() {
           to={`/${lastSection.group}/${lastSection.section}`}
           className="text-lg flex items-center font-medium gap-2 text-zinc-100 hover:underline"
         >
-          <Icon icon="tabler:arrow-left" className="w-5 h-5 -mb-1" />
+          <Icon icon="tabler:arrow-left" className="w-5 h-5 shrink-0 -mb-1" />
           {toTitleCase(lastSection.section)}
         </Link>
       ) : (
@@ -111,7 +111,7 @@ function NavigationBar() {
           className="text-lg flex items-center font-medium gap-2 text-zinc-100 hover:underline"
         >
           {toTitleCase(nextSection.section)}
-          <Icon icon="tabler:arrow-right" className="w-5 h-5 -mb-1" />
+          <Icon icon="tabler:arrow-right" className="w-5 h-5 shrink-0 -mb-1" />
         </Link>
       )}
     </div>

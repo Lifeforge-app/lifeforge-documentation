@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import React, { useState } from "react";
+import { useState } from "react";
 
 function LightDarkMode() {
   const [mode, setMode] = useState<"light" | "dark">("light");
@@ -7,12 +7,14 @@ function LightDarkMode() {
   return (
     <div className="w-full min-w-0 flex mt-6">
       <div className="w-full p-4 rounded-md bg-zinc-800/50">
-        <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold">Light/Dark Theme Preview</h3>
-          <div className="flex bg-zinc-800 rounded-md gap-2">
+        <div className="flex flex-col gap-4 md:flex-row items-center justify-between">
+          <h3 className="text-xl font-semibold w-full text-left">
+            Light/Dark Theme Preview
+          </h3>
+          <div className="flex w-full md:w-auto bg-zinc-800 rounded-md gap-2">
             <button
               onClick={() => setMode("light")}
-              className={`p-2 px-4 rounded-md flex items-center font-medium gap-1 ${
+              className={`p-2 px-4 w-1/2 justify-center rounded-md flex items-center font-medium gap-1 ${
                 mode === "light"
                   ? "bg-teal-500 text-zinc-800"
                   : "bg-zinc-800 text-zinc-400"
@@ -23,7 +25,7 @@ function LightDarkMode() {
             </button>
             <button
               onClick={() => setMode("dark")}
-              className={`p-2 px-4 rounded-md flex items-center font-medium gap-1 ${
+              className={`p-2 px-4 w-1/2 justify-center rounded-md flex items-center font-medium gap-1 ${
                 mode === "dark"
                   ? "bg-teal-500 text-zinc-800"
                   : "bg-zinc-800 text-zinc-400"

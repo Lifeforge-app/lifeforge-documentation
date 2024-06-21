@@ -1,0 +1,96 @@
+import { Icon } from "@iconify/react";
+
+###### Configuration
+
+# The Most Annoying Part
+
+Time to configure the system. This is the most annoying part of setting up Lifeforge, and there are millions of possibilities that things will go wrong. But don't worry, I'll guide you through it step by step, hopefully.
+
+---
+
+<section id="frontend-configuration">
+## Frontend Configuration
+
+First, navigate to the <code>lifeforge</code> directory that you cloned earlier. You will find a <code>.env.example</code> file in the root directory. Copy this file and rename it to <code>.env</code>. Open it in your favorite text editor and fill in the following fields:
+
+| Field                      | Description                                                                                           |
+|----------------------------|-------------------------------------------------------------------------------------------------------|
+| **VITE_API_HOST**          | That should be a local IP address, e.g. <code>http://192.168.x.x:3000</code>, unless you are hosting the API server on a cloud server, or you have a proxy server. |
+| **VITE_PUBLIC_PORTAL_URL** | You should host this on a cloud server like vercel or netlify.   |
+| **VITE_LOCALIZATION_MANAGER_URL** | Head to [Localization](/localization) to learn more about this. |
+</section>
+
+<section id="backend-configuration">
+## Backend Configuration
+
+Next, navigate to the <code>pms-api</code> directory that you cloned earlier. And damn there are so many environment variables to fill in. Similar to the frontend, fill in the following fields in the <code>.env</code> file:
+
+| Field                      | Value                                                                                                 |
+|----------------------------|-------------------------------------------------------------------------------------------------------|
+| **PB_HOST**      | The URL of your Pocketbase server                                                                             |
+| **PB_EMAIL**      | The admin email of your Pocketbase server                                                                            |
+| **PB_PASSWORD**      | The admin password of your Pocketbase server                                                                                       |
+| **DATABASE_OWNER**      | The path where your api, database and uploads folder are located                                                                                               |
+| **SPOTIFY_CLIENT_ID**      | The client ID for your spotify web playback API                                                                    |
+| **SPOTIFY_CLIENT_SECRET**      | The client secret for your spotify web playback API                                                                    |
+| **PORT**      | The port that you prefer to run your server on                                                                                                 |
+| **GITEA_TOKEN**      | The access token fof your Gitea server                                                              |
+| **GITEA_USERNAME**      | The username of your Gitea server                                                                                            |
+| **CALIBRE_PATH**      | The path to the folder that contains your Calibre books data                                                                                 |
+| **GMAIL_APP_PASSWORD**      | The app password for your google account                                                                                  |
+| **GEMINI_API_KEY**      | The API key of your Google Gemini AI                                                             |
+| **CPANEL_API_TOKEN**      | The API token for your Cpanel                                                                       |
+</section>
+
+<section id="database-configuration">
+## Database Configuration
+
+Finally, you'll need to configure your Pocketbase database. Fire up the database that you have just downloaded.
+
+```bash
+cd database && ./pocketbase serve --http="192.168.x.x:8090"
+```
+
+Then, navigate to the URL that the Pocketbase server is running on. Upon entering for the first time, you will be prompted to create an admin account. Fill in the details and you're good to go.
+
+Once logged in, head to the settings page and click on the **"Import Collection"** button in the sidebar under the "Sync" section. Head to the api folder, and you should find a file named **"pb_schema.json"** located in the directory **"pb_schema"**. Replace all the <code>\<YOUR_EMAIL\></code> with the email that you want to use to login to your Lifeforge system. Note that this email can be different from the admin email of your Pocketbase server. Then, paste the content of the file into the text area and click on the **"Review"** button. If everything is correct, click on the **"Confirm and Import"** button.
+
+After that, head back to the collection tab, and you should see a bunch of newly created empty collections. The topmost collection should be named **"Users"**. Click on it, and press the **"New Record"** button at the top right corner. Fill in the details and click on the **"Save"** button. You have now created your first user account. Soon I'll add a feature to create user accounts from the frontend, but for now, you'll have to do it manually.
+
+Keep in mind that the you can only create one user account at the moment. And also make sure that the email you used to create the user account is the same as the email you used to replace the <code>\<YOUR_EMAIL\></code> in the **"pb_schema.json"** file.
+</section>
+
+<section id="public-portal-configuration">
+## Public Portal Configuration
+
+Follow the same steps as configuring the frontend, but make sure to fill in the following fields in the <code>.env</code> file:
+
+| Field                      | Description                                                                                           |
+|----------------------------|-------------------------------------------------------------------------------------------------------|
+| **VITE_API_HOST**          | The URL of your proxy server, e.g. <code>http://192.168.x.x:3000</code> |
+</section>
+
+<section id="codetime-configuration">
+## Codetime Configuration
+
+If you're a developer, it is always good to track your coding time. There is an existing VSCode extension that can help you track your coding time, but you have to tweak the source code a little bit to tunnel the data to your Lifeforge system. First, go and install the [Code Time](https://marketplace.visualstudio.com/items?itemName=jannchie.codetime) extension. 
+
+Then, clone the source code of the extension:
+
+```bash
+git clone https://github.com/datreks/codetime-vscode
+```
+
+Navigate to the <code>codetime-vscode</code> directory and open the <code>src/codetime.ts</code> file. Find line where the text <code>prefixUrl:</code> is located, and replace the URL with <code>\<YOUR_LIFEFORGE_API_HOST\>/code-time</code>. Then, build the extension:
+
+```bash
+yarn install
+yarn build
+```
+
+Finally, replace the existing extension with the new one that you have just built. Now, the coding time data will be sent to your Lifeforge system.
+</section>
+
+---
+
+And that's it! You have successfully configured your Lifeforge system. Now you should be able to start the system locally and access it from your browser. Now, let's move on to the next section to learn how to make it available anywhere you go.

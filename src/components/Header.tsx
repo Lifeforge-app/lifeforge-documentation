@@ -9,7 +9,7 @@ function Header({
   setSidebarOpen: (value: boolean) => void;
 }) {
   return (
-    <header className="w-full z-50 sticky top-0 p-3 gap-8 flex items-center px-5 border-b-[1.5px] bg-zinc-900 border-zinc-800">
+    <header className="w-full z-[55] sticky top-0 p-3 gap-8 flex items-center px-5 border-b-[1.5px] bg-zinc-900 border-zinc-800">
       <Link to="/" className="flex items-center gap-2">
         <Icon icon="tabler:hammer" className="w-8 h-8 text-teal-500" />
         <h1 className="text-2xl font-semibold hidden [@media(min-width:420px)]:block">

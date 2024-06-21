@@ -108,7 +108,7 @@ function App() {
     <main className="w-full h-dvh overflow-y-scroll  bg-zinc-900 text-zinc-200 flex flex-col">
       <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="flex flex-1">
-        <Sidebar sidebarOpen={sidebarOpen} />
+        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         <Routes>
           <Route
             path="/"

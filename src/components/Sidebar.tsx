@@ -2,7 +2,13 @@ import { Link, useLocation } from "react-router-dom";
 import { toLinkCase } from "../utils/string";
 import SECTIONS from "../constants/Sections";
 
-function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
+function Sidebar({
+  sidebarOpen,
+  setSidebarOpen,
+}: {
+  sidebarOpen: boolean;
+  setSidebarOpen: (value: boolean) => void;
+}) {
   const location = useLocation();
 
   return (
@@ -25,7 +31,10 @@ function Sidebar({ sidebarOpen }: { sidebarOpen: boolean }) {
             <div className="mt-4 relative before:z-[-1] isolate before:h-full before:border-r-[1.5px] before:border-zinc-800 before:absolute before:top-0 before:left-0">
               {items.map((item) => (
                 <Link
-                  onClick={() => document.querySelector("main")?.scrollTo(0, 0)}
+                  onClick={() => {
+                    document.querySelector("main")?.scrollTo(0, 0);
+                    setSidebarOpen(false);
+                  }}
                   to={`/${toLinkCase(title)}/${toLinkCase(item)}`}
                   key={`${title}-${item}`}
                   className={`py-2 px-4 block cursor-pointer transition-all ${

@@ -37,6 +37,7 @@ function LightDarkMode() {
           </div>
         </div>
         <img
+          key={mode}
           src={`/assets/colors/${mode}.png`}
           alt="Light/Dark Mode"
           className="w-full mt-4 rounded-md"

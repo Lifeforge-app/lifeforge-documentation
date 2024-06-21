@@ -29,6 +29,7 @@ function BgTemp() {
           </div>
         </div>
         <img
+          key={bgTemp}
           src={`/assets/bgTemp/${COLORS.indexOf(bgTemp) + 1}.png`}
           alt="Light/Dark Mode"
           className="w-full mt-4 rounded-md"

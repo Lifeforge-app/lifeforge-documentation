@@ -15,7 +15,9 @@ function Boilerplate() {
         element.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      document
+        .querySelector("section")
+        ?.parentElement?.parentElement?.scrollTo(0, 0);
     }
   }, [location]);
 
@@ -49,7 +51,7 @@ function Boilerplate() {
             <p className="text-center text-sm text-zinc-500">
               A project by{" "}
               <a
-                className="text-teal-500 underline"
+                className="text-primary underline"
                 target="_blank"
                 href="https://thecodeblog.net"
                 rel="noreferrer"
@@ -58,7 +60,7 @@ function Boilerplate() {
               </a>{" "}
               licensed under{" "}
               <a
-                className="text-teal-500 underline"
+                className="text-primary underline"
                 target="_blank"
                 href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
                 rel="noreferrer"

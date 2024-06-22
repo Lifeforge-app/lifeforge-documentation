@@ -4,6 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        primary: "#CEDD3E",
         custom: {
           50: "rgb(var(--color-custom-50) / <alpha-value>)",
           100: "rgb(var(--color-custom-100) / <alpha-value>)",

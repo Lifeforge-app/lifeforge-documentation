@@ -94,7 +94,6 @@ function NavigationBar() {
     <div className="flex items-center justify-between mt-12">
       {lastSection ? (
         <Link
-          onClick={() => document.querySelector("main")?.scrollTo(0, 0)}
           to={`/${lastSection.group}/${lastSection.section}`}
           className="text-lg flex items-center font-medium gap-2 text-zinc-100 hover:underline"
         >
@@ -106,7 +105,6 @@ function NavigationBar() {
       )}
       {nextSection && (
         <Link
-          onClick={() => document.querySelector("main")?.scrollTo(0, 0)}
           to={`/${nextSection.group}/${nextSection.section}`}
           className="text-lg flex items-center font-medium gap-2 text-zinc-100 hover:underline"
         >

@@ -11,10 +11,10 @@ function Header({
   return (
     <header className="w-full z-[55] sticky top-0 p-3 gap-8 flex items-center px-5 border-b-[1.5px] bg-zinc-900 border-zinc-800">
       <Link to="/" className="flex items-center gap-2">
-        <Icon icon="tabler:hammer" className="w-8 h-8 text-teal-500" />
+        <Icon icon="tabler:hammer" className="w-8 h-8 text-primary" />
         <h1 className="text-2xl font-semibold hidden [@media(min-width:420px)]:block">
           LifeForge
-          <span className="text-2xl ml-1 text-teal-500">.</span>
+          <span className="text-2xl ml-1 text-primary">.</span>
           <span className="text-xl ml-1 font-medium">Docs</span>
         </h1>
         <span className="text-xl ml-1 font-medium [@media(min-width:420px)]:hidden">

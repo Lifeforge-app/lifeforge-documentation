@@ -56,7 +56,7 @@ function Sidebar({
                       className={`py-2 px-4 block cursor-pointer transition-all ${
                         location.pathname ===
                         `/${toLinkCase(title)}/${toLinkCase(item)}`
-                          ? "font-semibold text-teal-500 border-l-[2.5px] border-teal-500 hover:text-teal-600"
+                          ? "font-semibold text-primary border-l-[2.5px] border-primary hover:border-primary"
                           : "text-zinc-500 hover:text-zinc-100 hover:font-medium"
                       }`}
                     >

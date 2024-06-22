@@ -17,7 +17,7 @@ const components: MDXComponents = {
   },
   h6(properties) {
     return (
-      <h6 {...properties} className="sm:text-lg font-medium text-teal-500" />
+      <h6 {...properties} className="sm:text-lg font-medium text-primary" />
     );
   },
   h1(properties) {
@@ -53,7 +53,7 @@ const components: MDXComponents = {
     return (
       <Link
         to={properties.href || ""}
-        className="font-medium text-teal-500 underline"
+        className="font-medium text-primary underline"
       >
         {properties.children}
       </Link>

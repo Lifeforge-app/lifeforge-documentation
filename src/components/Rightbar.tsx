@@ -51,7 +51,7 @@ function Rightbar() {
         {allSections.map((item, index) => (
           <li
             key={index}
-            className="py-2 px-4 cursor-pointer aria-[current=page]:font-semibold aria-[current=page]:text-teal-500 aria-[current=page]:border-l-[2.5px] aria-[current=page]:border-teal-500 text-zinc-500 hover:text-zinc-100 hover:font-medium"
+            className="py-2 px-4 cursor-pointer aria-[current=page]:font-semibold aria-[current=page]:text-primary aria-[current=page]:border-l-[2.5px] aria-[current=page]:border-primary text-zinc-500 hover:text-zinc-100 hover:font-medium"
           >
             <Link
               id={toLinkCase(item.replace(/\./g, ""))}

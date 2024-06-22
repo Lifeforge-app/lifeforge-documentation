@@ -16,7 +16,7 @@ function LightDarkMode() {
               onClick={() => setMode("light")}
               className={`p-2 px-4 w-1/2 justify-center rounded-md flex items-center font-medium gap-1 ${
                 mode === "light"
-                  ? "bg-teal-500 text-zinc-800"
+                  ? "bg-primary text-zinc-800"
                   : "bg-zinc-800 text-zinc-400"
               }`}
             >
@@ -27,7 +27,7 @@ function LightDarkMode() {
               onClick={() => setMode("dark")}
               className={`p-2 px-4 w-1/2 justify-center rounded-md flex items-center font-medium gap-1 ${
                 mode === "dark"
-                  ? "bg-teal-500 text-zinc-800"
+                  ? "bg-primary text-zinc-800"
                   : "bg-zinc-800 text-zinc-400"
               }`}
             >

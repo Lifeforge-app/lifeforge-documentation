@@ -40,6 +40,29 @@ Next, navigate to the <code>pms-api</code> directory that you cloned earlier. An
 | **GMAIL_APP_PASSWORD**      | The app password for your google account                                                                                  |
 | **GEMINI_API_KEY**      | The API key of your Google Gemini AI                                                             |
 | **CPANEL_API_TOKEN**      | The API token for your Cpanel                                                                       |
+
+### PDF Thumbnail Generation
+
+There are some module that utliize the package <code>pdf-thumbnail</code> to generate thumbnails for PDF files. This package requires <code>imagemagick</code> and <code>ghostscript</code> to be installed on your system. You can install them by running the following commands:
+
+```bash
+sudo apt-get install imagemagick
+sudo apt-get install ghostscript
+```
+
+After the installation, open the <code>/etc/ImageMagick-6/policy.xml</code> file and change the following line:
+
+```xml
+<policy domain="coder" rights="none" pattern="PDF" />
+```
+
+to:
+
+```xml
+<policy domain="coder" rights="read|write" pattern="PDF" />
+```
+    
+Then, without restarting the server, you should be able to generate thumbnails for PDF files.
 </section>
 
 <section id="database-configuration">

@@ -36,6 +36,11 @@ const components: MDXComponents = {
       />
     );
   },
+  h3(properties) {
+    return (
+      <h3 {...properties} className="text-xl sm:text-2xl font-semibold mt-6" />
+    );
+  },
   p(properties) {
     return (
       <p {...properties} className="mt-4 sm:mt-6 sm:text-lg text-zinc-500" />

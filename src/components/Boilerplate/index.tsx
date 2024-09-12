@@ -22,7 +22,7 @@ function Boilerplate() {
   }, [location]);
 
   return (
-    <article className="flex-1 relative xl:ml-[20rem] h-full p-6 sm:p-12 overflow-y-auto min-h-0">
+    <article className="flex-1 relative xl:ml-[20rem] h-full p-6 sm:p-12 !pb-0 overflow-y-auto min-h-0">
       <Scrollbars
         renderThumbVertical={({ style, ...props }) => (
           <div
@@ -41,7 +41,7 @@ function Boilerplate() {
           <Outlet />
           <NavigationBar />
           <hr className="my-12 border-t-[1.5px] border-zinc-800" />
-          <div className="flex flex-col items-center justify-center gap-2">
+          <div className="flex flex-col items-center justify-center gap-2 pb-6 sm:pb-12">
             <div className="flex items-center gap-2 text-zinc-500">
               <Icon icon="tabler:creative-commons" className="size-6" />
               <Icon icon="tabler:creative-commons-by" className="size-6" />

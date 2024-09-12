@@ -21,3 +21,29 @@ The light and dark theme is a system-wide setting that changes the color scheme 
 The background temperature is a setting that changes the color of the background of your system. There are 5 variants of background color from warm to cold that you can choose from, being <code>Slate</code>, <code>Gray</code>, <code>Zinc</code>, <code>Neutral</code>, and <code>Stone</code>. Each variant has its own unique color scheme that can give your system a different look and feel.
 <BGTemp />
 </section>
+
+<section id="accent-color">
+## Accent Color
+
+There are currently 18 predefined colors inspired by Material UI that you can choose from to use as the accent color of your system. The accent color is used to highlight important elements of your system, such as buttons, links, and other interactive elements. Feel free to choose the color that best suits your style.
+
+<div className="grid grid-cols-6 gap-6 mt-8">
+{[
+  'red', 'pink', 'purple', 'deep-purple', 'indigo', 'blue', 'light-blue', 'cyan',
+  'teal', 'green', 'light-green', 'lime', 'yellow', 'amber', 'orange', 'deep-orange', 'brown', 'grey'
+].map((color, index) => (
+  <div key={index} className="flex flex-col items-center">
+    <div className={`w-16 h-16 rounded-full theme-${color} bg-custom-500`}></div>
+    <span className="text-sm text-gray-500 mt-2">{color}</span>
+  </div>
+))}
+</div>
+</section>
+
+<section id="future-improvements">
+## Future Improvements
+
+In the current stage of development, the colors that user can choose from are quite limited. In the future, I plan to add a feature that allows users take full control of their system's color scheme. Users will be able to choose any color they want for the background and the accent color. This feature will give users the ability to create a truly unique look and feel for their system.
+
+However, this feature requires a full rewrite of the CSS mechanism of the system. This is a big task and will take some time to complete. But I believe that it will be worth it in the end.
+</section>

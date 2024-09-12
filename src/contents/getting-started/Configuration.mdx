@@ -18,6 +18,14 @@ First, navigate to the <code>lifeforge</code> directory that you cloned earlier.
 | **VITE_API_HOST**          | That should be a local IP address, e.g. <code>http://192.168.x.x:3000</code>, unless you are hosting the API server on a cloud server, or you have a proxy server. |
 | **VITE_PUBLIC_PORTAL_URL** | You should host this on a cloud server like vercel or netlify.   |
 | **VITE_LOCALIZATION_MANAGER_URL** | Head to [Localization](/localization) to learn more about this. |
+| **VITE_GOOGLE_API_KEY**    | The API key for your Google API. You can get it from the Google Cloud Platform. |
+
+
+<div className="w-full p-4 bg-zinc-800 mt-6 rounded-md border-l-4 border-amber-500">
+<p className="-mt-4 sm:-mt-6">
+**Note:** When setting up the Google API key, make sure to enable the Maps API and the Google Fonts API.
+</p>
+</div>
 </section>
 
 <section id="backend-configuration">
@@ -62,7 +70,25 @@ to:
 <policy domain="coder" rights="read|write" pattern="PDF" />
 ```
     
-Then, without restarting the server, you should be able to generate thumbnails for PDF files.
+Then, without needing to restart the server, you should be able to generate thumbnails for PDF files.
+
+### yt-dlp Configuration
+
+The system uses <code>yt-dlp</code> to download YouTube videos. The source code of the system comes with a prebuilt binary of <code>yt-dlp</code> for Unix-based system. If you are running the system on a different OS, you can download the binary from the official [yt-dlp](https://github.com/yt-dlp/yt-dlp/wiki/Installation).
+
+The binary is located in the <code>src/bin</code> directory. You can replace the existing binary with the one that you have downloaded. If you are running the system on a Unix-based system, you can skip this step.
+
+Also, make sure the binary has the execute permission:
+
+```bash
+chmod +x yt-dlp
+```
+
+Since Google is an evil big tech company, they are constantly changing how YouTube works. So, there is a possibility that the system might not work in the future. Fortunately, the open source community is always there to update the <code>yt-dlp</code> library to make sure it works with the latest changes on YouTube. So, if the system stops working, you can always update the binary by using the following command:
+
+```bash
+./yt-dlp -U
+```
 </section>
 
 <section id="database-configuration">

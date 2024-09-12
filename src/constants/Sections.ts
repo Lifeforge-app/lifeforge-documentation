@@ -5,7 +5,7 @@ const SECTIONS = {
     "Configuration",
     "Deployment",
   ],
-  "Design System": ["Colors", "Typography", "Icons", "Buttons"],
+  "Design System": ["Colors", "Typography", "Icons"],
   Components: ["Button", "Input", "Select", "Checkbox"],
   Internationalization: ["Introduction", "Setup", "Usage", "Translation"],
   Modules: [

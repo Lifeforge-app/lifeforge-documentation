@@ -7,6 +7,9 @@ import Installation from "./contents/getting-started/Installation.mdx";
 import Configuration from "./contents/getting-started/Configuration.mdx";
 import Deployment from "./contents/getting-started/Deployment.mdx";
 import Colors from "./contents/design-system/Colors.mdx";
+import Typography from "./contents/design-system/Typography.mdx";
+import Icons from "./contents/design-system/Icons.mdx";
+
 import Boilerplate from "./components/Boilerplate";
 import { MDXComponents } from "mdx/types";
 import { useState } from "react";
@@ -104,6 +107,9 @@ const components: MDXComponents = {
       />
     );
   },
+  img(properties) {
+    return <img {...properties} className="w-full rounded-lg" />;
+  },
 };
 
 function App() {
@@ -143,7 +149,11 @@ function App() {
                 path="colors"
                 element={<Colors components={components} />}
               />
-              <Route path="typography" element={<div>Typography</div>} />
+              <Route
+                path="typography"
+                element={<Typography components={components} />}
+              />
+              <Route path="icons" element={<Icons components={components} />} />
             </Route>
           </Route>
         </Routes>

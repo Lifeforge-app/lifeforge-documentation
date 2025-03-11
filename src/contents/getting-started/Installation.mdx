@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import Notes from "../../components/Notes";
 
 ###### Installation
 
@@ -13,108 +14,57 @@ To be frank, Lifeforge is quite a complicated system, integrating many external 
 
 Before you start, make sure you have the following items on hand:
 
-- **A Raspberry Pi 4 or any other computer in Unix-like systems:** This is the hardware that will be used to host the Lifeforge API and database. Don't ask me why it has to be Unix-like, cuz Windows is a pain in the butt to work with.
+- **A Raspberry Pi 4 or any other computer in Unix-like systems:** This is the hardware that will be used to host the Lifeforge API and database.
 - **A functional brain:** You will need to have a basic understanding of how to use a terminal and how to run a Node.js application.
 - **A cup of coffee:** This is optional, but it's always nice to have a cup of coffee by your side when you're coding.
+
+<Notes>
+If you're using Windows to host the Lifeforge system, you might run into some issues. I recommend using a Unix-like system such as Linux or macOS to host the system. If you're using Windows, you can set up a virtual machine running Linux or use the Windows Subsystem for Linux (WSL).
+</Notes>
 </section>
 
 <section id="frontend-installation">
 ## Frontend Installation
 
-First, clone the Lifeforge frontend repository to your local machine. You can do this by running the following command in your terminal:
+First, clone the Lifeforge frontend repository to your local machine or your server. You can do this by running the following command in your terminal:
 
 
 ```bash
-git clone https://github.com/melvinchia3636/lifeforge.git
+git clone https://github.com/lifeforge-app/lifeforge.git
 ```
 
-Then, install the dependencies using whatever package manager you prefer. I personally use Yarn, so I'll run the following command:
+Then, install the dependencies using whatever package manager you prefer. I personally use Bun, so I'll run the following command:
 
 ```bash
-yarn install
-```
-
-Also, in order to let the public access certain contents in your system, there is a separate public portal that you have to install.
-
-```bash
-git clone https://github.com/melvinchia3636/lifeforge-public.git
-```
-
-Then, do the same thing as you did with the frontend repository:
-
-```bash
-yarn install
+cd lifeforge && bun install
 ```
 </section>
 
 <section id="backend-installation">
 ## Backend Installation
 
-Next, get access to your server terminal and clone the Lifeforge api repository into it.
+Next, get access to your server terminal (if you haven't already) and clone the Lifeforge api repository into it.
 
 ```bash
-git clone https://github.com/melvinchia3636/pms-api.git
+git clone https://github.com/lifeforge-app/lifeforge-api.git
 ```
 
-Then, do the same thing as well:
+Then, install the dependencies as well:
 
 ```bash
-yarn install
+cd lifeforge-api && yarn install
 ```
+
+After that, you'll need to create a folder named **medium** in the root directory of your server. This folder will be used to temporarily store the media files uploaded by users.
+
+```bash
 </section>
 
 <section id="database-installation">
 ## Database Installation
 
-Finally, you'll need to set up a PocketBase database. For your information, PocketBase is a free, open-source, and self-hosted lightweight database. Head over to the [PocketBase website](https://pocketbase.io) and follow the instructions to set up your database. Make sure to run the database on the same server as the Lifeforge API.
-</section>
+Finally, you'll need to set up a PocketBase database. For your information, PocketBase is a free, open-source, and self-hosted lightweight database. Head over to the [PocketBase website](https://pocketbase.io) and download the latest version of the database. Make sure to select the correct version for your server's operating system. Once downloaded, extract the files and inside the extracted folder, you'll find an executable file named **"pocketbase"**. Move this file to the **"database"** directory in your server using <code>sftp</code> or any other file transfer method you prefer.
 
-<section id="nas-installation">
-## NAS Installation
-
-Lifeforge utilizes a NAS as a medium to transfer files between the server and the client. You can use any NAS that supports the Samba protocol.
-
-Create a new folder in the same directory as the Lifeforge API and name it <code>uploads</code>. This folder will be used to temporarily store files that are being transferred between the server and the client.
-
-Then, using whatever way you prefer, set up the NAS and configure it to allow access to the <code>uploads</code> folder.
-</section>
-
-<section id="gitea-installation">
-## Gitea Installation
-
-Lifeforge uses Gitea as a Git server to store and manage code repositories. You should install Gitea on the same server as the Lifeforge API. Head over to the [Gitea Installation Manual](https://docs.gitea.com/category/installation) and follow the instructions to set up your Gitea server. Once done, head to the settings page and create a new access token. Copy the token as you will need it later.
-
-Also, optionally, you can setup the Gitea server to store the repositories in the same directory as the Lifeforge API, if you have a dedicated hard drive for the server.
-</section>
-
-<section id="calibre-installation">
-## Calibre Installation
-
-Lifeforge uses Calibre to store and manage eBooks. You should install Calibre on the same server as the Lifeforge API. Using whatever way you prefer, install Calibre and expose the <code>calibredb</code> command to the terminal. Then, create a folder in the same directory as the Lifeforge API and name it <code>calibre</code>. This folder will be used to store the Calibre library.
-</section>
-
-<section id="spotify-web-playback-api">
-## Spotify Web Playback API
-
-Lifeforge uses the Spotify Web Playback API to play music. Head over to the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard) and create a new app. Once done, copy the client ID and client secret as you will need them later.
-</section>
-
-<section id="gmail-app-password">
-## Gmail App Password
-
-Lifeforge uses the Gmail App Password to externally access your mail inbox. Head over to the [Google Account Security Page](https://myaccount.google.com/security), scroll down to the "2-Step Verification" section, and create a new app password for Lifeforge. Copy the app password as you will need it later.
-</section>
-
-<section id="gemini-api">
-## Gemini API
-
-Lifeforge uses the Gemini API to perform some sweet sweet AI stuff, since its free tier is quite generous. Head over to the [Gemini API](https://ai.google.dev) and create a new API key. Copy the API key as you will need it later.
-</section>
-
-<section id="cpanel-api">
-## CPanel API
-
-Lifeforge uses the CPanel API to perform some server management tasks. Head over to your CPanel account and create a new API token. Copy the API token as you will need it later.
 </section>
 
 <section id="make-sure">
@@ -122,15 +72,12 @@ Lifeforge uses the CPanel API to perform some server management tasks. Head over
 
 Before you proceed, make sure your server directory structure looks like this:
 
-```bash
-lifeforge
-├── lifeforge
-├── lifeforge-public
-├── pms-api
+```plaintext
+lifeforge-server (or just put everything in the home directory)
+├── lifeforge (if you decided to host the frontend and backend in the same server)
+├── lifeforge-api
 ├── database
-├── uploads
-├── git (optional)
-└── calibre
+└── medium
 ```
 </section>
 

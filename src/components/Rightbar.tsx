@@ -1,12 +1,28 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { toLinkCase, toTitleCase } from "../utils/string";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function Rightbar() {
   const [allSections, setAllSections] = useState<string[]>([]);
   const [activeSection, setActiveSection] = useState<string>("");
   const location = useLocation();
+  const userClickedRef = useRef(false);
+  const userClickTimeoutRef = useRef<number | null>(null);
+
+  // Apply aria-current attribute whenever activeSection changes
+  useEffect(() => {
+    if (activeSection) {
+      document.querySelectorAll("li[aria-current=page]").forEach((li) => {
+        li.removeAttribute("aria-current");
+      });
+
+      const activeLink = document.querySelector(`li a#${activeSection}`);
+      if (activeLink?.parentElement) {
+        activeLink.parentElement.setAttribute("aria-current", "page");
+      }
+    }
+  }, [activeSection]);
 
   useEffect(() => {
     const sections = document.querySelectorAll("article section");
@@ -16,23 +32,22 @@ function Rightbar() {
     });
     setAllSections(_allSections);
 
-    // Reset active section when location changes
     setActiveSection("");
 
-    // Create a map to track intersection ratios
     const sectionIntersectionRatios = new Map<string, number>();
 
     const observer = new IntersectionObserver(
       (entries) => {
+        // Don't update if the user just clicked a link
+        if (userClickedRef.current) return;
+
         entries.forEach((entry) => {
           const id = entry.target.id || "";
           const sanitizedId = toLinkCase(id);
 
-          // Store the intersection ratio for this section
           sectionIntersectionRatios.set(sanitizedId, entry.intersectionRatio);
         });
 
-        // Find the section with the highest intersection ratio
         let highestRatio = 0;
         let mostVisibleSection = "";
 
@@ -43,27 +58,13 @@ function Rightbar() {
           }
         });
 
-        // Only update if we have a visible section and it's different from current
         if (mostVisibleSection && mostVisibleSection !== activeSection) {
           setActiveSection(mostVisibleSection);
-
-          // Remove current highlight from all section links
-          document.querySelectorAll("li[aria-current=page]").forEach((li) => {
-            li.removeAttribute("aria-current");
-          });
-
-          // Highlight the current section in the sidebar
-          const activeLink = document.querySelector(
-            `li a#${mostVisibleSection}`
-          );
-          if (activeLink?.parentElement) {
-            activeLink.parentElement.setAttribute("aria-current", "page");
-          }
         }
       },
       {
         threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-        rootMargin: "-10% 0px -70% 0px", // Adjust these values to fine-tune when sections become active
+        rootMargin: "-10% 0px -70% 0px",
       }
     );
 
@@ -71,7 +72,6 @@ function Rightbar() {
       if (section.id) {
         observer.observe(section);
       } else {
-        // If section doesn't have an ID, try to create one from its heading
         const heading = section.querySelector("h2,h6");
         if (heading && heading.textContent) {
           section.id = toLinkCase(heading.textContent.replace(/\./g, ""));
@@ -80,13 +80,49 @@ function Rightbar() {
       }
     });
 
+    // Set the first section as active after processing all sections
+    if (_allSections.length > 0) {
+      const firstSectionId = toLinkCase(_allSections[0].replace(/\./g, ""));
+      setActiveSection(firstSectionId);
+    }
+
     return () => {
       document.querySelectorAll("li[aria-current=page]").forEach((li) => {
         li.removeAttribute("aria-current");
       });
       observer.disconnect();
+
+      if (userClickTimeoutRef.current) {
+        window.clearTimeout(userClickTimeoutRef.current);
+      }
     };
   }, [location]);
+
+  const handleSectionClick = (itemId: string) => {
+    // Set active section immediately
+    setActiveSection(itemId);
+
+    // Manually scroll to the section
+    setTimeout(() => {
+      const sectionElement = document.getElementById(itemId);
+      if (sectionElement) {
+        sectionElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 0);
+
+    // Temporarily disable the intersection observer's effect
+    userClickedRef.current = true;
+
+    // Clear any existing timeout
+    if (userClickTimeoutRef.current) {
+      window.clearTimeout(userClickTimeoutRef.current);
+    }
+
+    // Re-enable the intersection observer after a delay
+    userClickTimeoutRef.current = window.setTimeout(() => {
+      userClickedRef.current = false;
+    }, 1000); // 1 second delay to allow scroll to finish
+  };
 
   return (
     <aside className="w-80 fixed top-20 hidden lg:block right-0 h-full p-12 overflow-y-auto min-h-0">
@@ -95,19 +131,19 @@ function Rightbar() {
         {allSections.map((item, index) => {
           const itemId = toLinkCase(item.replace(/\./g, ""));
           return (
-            <li
+            <a
               key={index}
-              className="py-2 px-4 cursor-pointer aria-[current=page]:font-semibold aria-[current=page]:text-primary aria-[current=page]:border-l-[2.5px] aria-[current=page]:border-primary text-zinc-500 hover:text-zinc-100 hover:font-medium"
+              id={itemId}
+              href={`#${itemId}`}
+              onClick={(e) => {
+                e.preventDefault(); // Prevent default anchor behavior
+                handleSectionClick(itemId);
+              }}
+              className="py-2 block px-4 cursor-pointer aria-[current=page]:font-semibold aria-[current=page]:text-primary aria-[current=page]:border-l-[2.5px] aria-[current=page]:border-primary text-zinc-500 hover:text-zinc-100 hover:font-medium"
               aria-current={activeSection === itemId ? "page" : undefined}
             >
-              <Link
-                id={itemId}
-                to={`#${itemId}`}
-                onClick={() => setActiveSection(itemId)}
-              >
-                {item}
-              </Link>
-            </li>
+              {item}
+            </a>
           );
         })}
       </ul>

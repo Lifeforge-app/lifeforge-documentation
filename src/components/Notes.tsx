@@ -1,11 +1,7 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import React from "react";
 
-function Notes({
-  children,
-}: {
-  children: React.ReactNode;
-}): React.ReactElement {
+function Notes({ children }: { children: React.ReactNode }) {
   return (
     <div className="w-full p-4 bg-zinc-800 mt-6 rounded-md border-l-4 border-primary">
       <div className="flex items-center gap-2">

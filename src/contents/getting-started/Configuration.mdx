@@ -116,15 +116,15 @@ And that's it! You have successfully configured your Pocketbase database. Now, l
 <section id="backend-configuration">
 ## Backend Configuration
 
-Next, navigate to the <code>lifeforge-api</code> directory that you cloned earlier. You'll see a file named <code>.env.example</code> in the root directory. Copy this file and rename it to <code>.env.local</code>. Open it in your favourite text editor and fill in the following fields:
+Next, navigate to the <code>lifeforge-api</code> directory that you cloned earlier. You'll see a file named <code>.env.example</code> in the <code>.env</code> directory. Copy this file and rename it to <code>.env.local</code>. Open it in your favourite text editor and fill in the following fields:
 
 | Field           | Value                                                                                                         |
 |-----------------|---------------------------------------------------------------------------------------------------------------|
 | **MASTER_KEY**  | A random string that you can generate using a password generator. This key is used to encrypt sensitive data. |
-| **PB_HOST**     | The URL to your Pocketbase server                                                                             |
+| **PB_HOST**     | The URL to your Pocketbase (Make sure to put the full URL, including the <code>http://</code> prefix) server                                                                             |
 | **PB_EMAIL**    | The admin email of your Pocketbase server                                                                     |
 | **PB_PASSWORD** | The admin password of your Pocketbase server                                                                  |
-| **PORT**        | The port that you prefer to run your server on                                                                |
+| **PORT**        | The port that you prefer to run your server on (A number between 1 to 65535)                                                                |
 
 
 ### PDF Thumbnail Generation
@@ -191,7 +191,7 @@ This is the last step towards setting up your Lifeforge system. Navigate to the 
 
 | Field           | Value                                                                                                         |
 |-----------------|---------------------------------------------------------------------------------------------------------------|
-| **VITE_API_HOST**  | The URL to your Lifeforge API server. This should be the URL that your API server is running on. |
+| **VITE_API_HOST**  | The URL to your Lifeforge API server. This should be the URL that your API server is running on. (Make sure to put full URL, including the <code>http(s)://</code>prefix) |
 | **VITE_GOOGLE_API_KEY**     | The Google API key generate from your Google Cloud console. This key is used to enable the Google Maps and Google Fonts selector in the system. |
 
 <Notes>

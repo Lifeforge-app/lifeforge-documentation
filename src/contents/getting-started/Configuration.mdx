@@ -187,12 +187,11 @@ And that's it! You have successfully configured your Lifeforge API server. Now, 
 <section id="frontend-configuration">
 ## Frontend Configuration
 
-This is the last step towards setting up your Lifeforge system. Navigate to the <code>lifeforge</code> directory that you cloned earlier. You will find a <code>.env.example</code> file in the root directory. Copy this file and rename it to <code>.env.local</code>. There is only two field that you need to fill in: 
+This is the last step towards setting up your Lifeforge system. Navigate to the <code>lifeforge</code> directory that you cloned earlier. You will find a <code>.env.example</code> file in the root directory. Copy this file and rename it to <code>.env.local</code>. There is only one field that you need to fill in: 
 
 | Field           | Value                                                                                                         |
 |-----------------|---------------------------------------------------------------------------------------------------------------|
 | **VITE_API_HOST**  | The URL to your Lifeforge API server. This should be the URL that your API server is running on. (Make sure to put full URL, including the <code>http(s)://</code>prefix) |
-| **VITE_GOOGLE_API_KEY**     | The Google API key generate from your Google Cloud console. This key is used to enable the Google Maps and Google Fonts selector in the system. |
 
 <Notes>
 For the Google API key, you might have to search up how to generate one from the Google Cloud console. It won't be covered in this documentation. Make sure to enable the Google Maps and Google Fonts API for the key.

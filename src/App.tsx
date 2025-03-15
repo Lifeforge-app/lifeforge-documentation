@@ -144,17 +144,6 @@ function App() {
                 element={<Deployment components={components} />}
               />
             </Route>
-            <Route path="/design-system">
-              <Route
-                path="colors"
-                element={<Colors components={components} />}
-              />
-              <Route
-                path="typography"
-                element={<Typography components={components} />}
-              />
-              <Route path="icons" element={<Icons components={components} />} />
-            </Route>
           </Route>
         </Routes>
         <Rightbar />

@@ -24,7 +24,7 @@ function Sidebar({
       <aside
         className={`${
           sidebarOpen ? "translate-x-0" : "-translate-x-full xl:translate-x-0"
-        } w-1/2 xl:w-80 z-50 bg-bg-900 h-[calc(100%-2rem)] transition-all fixed left-0 flex-1 overflow-y-auto`}
+        } w-full sm:w-3/4 md:w-1/2 xl:w-80 z-50 bg-bg-900 h-[calc(100%-2rem)] transition-all fixed left-0 flex-1 overflow-y-auto`}
       >
         <Scrollbars
           renderThumbVertical={({ style, ...props }) => (

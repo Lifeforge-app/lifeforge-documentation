@@ -1,4 +1,4 @@
-import { Icon } from "@iconify/react";
+import { Icon } from "@iconify/react/dist/iconify.js";
 import Notes from "../../components/Notes";
 
 ###### Installation
@@ -15,6 +15,7 @@ To be frank, Lifeforge is quite a complicated system, integrating many external 
 Before you start, make sure you have the following items on hand:
 
 - **A Raspberry Pi 4 or any other computer in Unix-like systems:** This is the hardware that will be used to host the Lifeforge API and database.
+- **Node.js and bun:** You will need to have Node.js and bun installed on your server to run the Lifeforge API and frontend. Any recent version of these should work fine.
 - **A functional brain:** You will need to have a basic understanding of how to use a terminal and how to run a Node.js application.
 - **A cup of coffee:** This is optional, but it's always nice to have a cup of coffee by your side when you're coding.
 
@@ -33,7 +34,7 @@ First, clone the Lifeforge frontend repository to your local machine or your ser
 git clone https://github.com/lifeforge-app/lifeforge.git
 ```
 
-Then, install the dependencies using whatever package manager you prefer. I personally use Bun, so I'll run the following command:
+Then, install the dependencies by running the following command:
 
 ```bash
 cd lifeforge && bun install

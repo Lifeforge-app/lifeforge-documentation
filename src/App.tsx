@@ -7,6 +7,12 @@ import Installation from "./contents/getting-started/Installation.mdx";
 import Configuration from "./contents/getting-started/Configuration.mdx";
 import Deployment from "./contents/getting-started/Deployment.mdx";
 
+import QuickStart from "./contents/user-guide/QuickStart.mdx";
+import Dashboard from "./contents/user-guide/Dashboard.mdx";
+import Modules from "./contents/user-guide/Modules.mdx";
+import Personalization from "./contents/user-guide/Personalization.mdx";
+import APIKeys from "./contents/user-guide/APIKeys.mdx";
+
 import Boilerplate from "./components/Boilerplate";
 import { MDXComponents } from "mdx/types";
 import { useState } from "react";
@@ -43,14 +49,14 @@ const components: MDXComponents = {
   },
   p(properties) {
     return (
-      <p {...properties} className="mt-4 sm:mt-6 sm:text-lg text-zinc-500" />
+      <p {...properties} className="mt-4 sm:mt-6 sm:text-lg text-bg-500" />
     );
   },
   hr(properties) {
     return (
       <hr
         {...properties}
-        className="mt-8 mb-4 sm:mt-12 sm:mb-8 border-t-[1.5px] border-zinc-800"
+        className="mt-8 mb-4 sm:mt-12 sm:mb-8 border-t-[1.5px] border-bg-800"
       />
     );
   },
@@ -68,14 +74,14 @@ const components: MDXComponents = {
     return <ul {...properties} className="mt-4 list-disc pl-6 space-y-4" />;
   },
   li(properties) {
-    return <li {...properties} className="sm:text-lg text-zinc-500" />;
+    return <li {...properties} className="sm:text-lg text-bg-500" />;
   },
   strong(properties) {
-    return <strong {...properties} className="font-semibold text-zinc-100" />;
+    return <strong {...properties} className="font-semibold text-bg-100" />;
   },
   code(properties) {
     return (
-      <div className="bg-zinc-800 rounded-md mt-6">
+      <div className="bg-bg-800 rounded-md mt-6">
         <code {...properties} />
       </div>
     );
@@ -84,7 +90,7 @@ const components: MDXComponents = {
     return (
       <table
         {...properties}
-        className="w-full mt-6 border-collapse border-[1.5px] border-zinc-800"
+        className="w-full mt-6 border-collapse border-[1.5px] border-bg-800"
       />
     );
   },
@@ -92,7 +98,7 @@ const components: MDXComponents = {
     return (
       <th
         {...properties}
-        className="text-left px-4 py-2 border-[1.5px] border-zinc-800"
+        className="text-left px-4 py-2 border-[1.5px] border-bg-800"
       />
     );
   },
@@ -100,7 +106,7 @@ const components: MDXComponents = {
     return (
       <td
         {...properties}
-        className="text-left first:break-all px-4 py-2 border-[1.5px] border-zinc-800"
+        className="text-left first:break-all px-4 py-2 border-[1.5px] border-bg-800"
       />
     );
   },
@@ -113,7 +119,7 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <main className="w-full h-dvh bg-zinc-900 text-zinc-200 flex flex-col">
+    <main className="w-full h-dvh bg-bg-900 text-bg-200 flex flex-col">
       <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="flex flex-1">
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
@@ -139,6 +145,28 @@ function App() {
               <Route
                 path="deployment"
                 element={<Deployment components={components} />}
+              />
+            </Route>
+            <Route path="/user-guide">
+              <Route
+                path="quick-start"
+                element={<QuickStart components={components} />}
+              />
+              <Route
+                path="dashboard"
+                element={<Dashboard components={components} />}
+              />
+              <Route
+                path="modules"
+                element={<Modules components={components} />}
+              />
+              <Route
+                path="personalization"
+                element={<Personalization components={components} />}
+              />
+              <Route
+                path="api-keys"
+                element={<APIKeys components={components} />}
               />
             </Route>
           </Route>

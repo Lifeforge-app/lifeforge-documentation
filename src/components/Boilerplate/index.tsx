@@ -30,7 +30,7 @@ function Boilerplate() {
             style={{
               ...style,
             }}
-            className="bg-zinc-800 rounded-md"
+            className="bg-bg-800 rounded-md"
           />
         )}
         autoHide
@@ -40,15 +40,15 @@ function Boilerplate() {
         <div className="w-full lg:w-[calc(100%-20rem)] min-w-0">
           <Outlet />
           <NavigationBar />
-          <hr className="my-12 border-t-[1.5px] border-zinc-800" />
+          <hr className="my-12 border-t-[1.5px] border-bg-800" />
           <div className="flex flex-col items-center justify-center gap-2 pb-6 sm:pb-12">
-            <div className="flex items-center gap-2 text-zinc-500">
+            <div className="flex items-center gap-2 text-bg-500">
               <Icon icon="tabler:creative-commons" className="size-6" />
               <Icon icon="tabler:creative-commons-by" className="size-6" />
               <Icon icon="tabler:creative-commons-nc" className="size-6" />
               <Icon icon="tabler:creative-commons-sa" className="size-6" />
             </div>
-            <p className="text-center text-sm text-zinc-500">
+            <p className="text-center text-sm text-bg-500">
               A project by{" "}
               <a
                 className="text-primary underline"

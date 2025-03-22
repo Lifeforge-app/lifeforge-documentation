@@ -24,7 +24,7 @@ function Sidebar({
       <aside
         className={`${
           sidebarOpen ? "translate-x-0" : "-translate-x-full xl:translate-x-0"
-        } w-1/2 xl:w-80 z-50 bg-zinc-900 h-[calc(100%-2rem)] transition-all fixed left-0 flex-1 overflow-y-auto`}
+        } w-1/2 xl:w-80 z-50 bg-bg-900 h-[calc(100%-2rem)] transition-all fixed left-0 flex-1 overflow-y-auto`}
       >
         <Scrollbars
           renderThumbVertical={({ style, ...props }) => (
@@ -33,7 +33,7 @@ function Sidebar({
               style={{
                 ...style,
               }}
-              className="bg-zinc-800 rounded-md"
+              className="bg-bg-800 rounded-md"
             />
           )}
           autoHide
@@ -44,7 +44,7 @@ function Sidebar({
             {Object.entries(SECTIONS).map(([title, items]) => (
               <div key={title}>
                 <h2 className="text-lg font-semibold">{title}</h2>
-                <div className="mt-4 relative before:z-[-1] isolate before:h-full before:border-r-[1.5px] before:border-zinc-800 before:absolute before:top-0 before:left-0">
+                <div className="mt-4 relative before:z-[-1] isolate before:h-full before:border-r-[1.5px] before:border-bg-800 before:absolute before:top-0 before:left-0">
                   {items.map((item) => (
                     <Link
                       onClick={() => {
@@ -57,7 +57,7 @@ function Sidebar({
                         location.pathname ===
                         `/${toLinkCase(title)}/${toLinkCase(item)}`
                           ? "font-semibold text-primary border-l-[2.5px] border-primary hover:border-primary"
-                          : "text-zinc-500 hover:text-zinc-100 hover:font-medium"
+                          : "text-bg-500 hover:text-bg-100 hover:font-medium"
                       }`}
                     >
                       {item}

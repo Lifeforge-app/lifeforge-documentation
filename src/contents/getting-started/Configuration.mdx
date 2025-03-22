@@ -10,7 +10,7 @@ Time to configure the system. This is the most annoying part of setting up Lifef
 ---
 
 <section id="database-configuration">
-## Database Configuration
+## Database Pre-Configuration
 
 First of all, you'll need to configure your Pocketbase database. First, you'll have to somehow get your hands on the local IP of your server. Depending on the OS you're using, the command might differ. Once done, you may proceed to fire up the database that you have just downloaded.
 
@@ -41,51 +41,6 @@ Make sure to set a decently strong password for your admin account, as the datab
 Once logged in, head to the settings page (the bottommost icon on the left sidebar). In the **Application** tab, there will be two input box at the top for the **Application Name** and **Application URL**. Fill in the details accordingly. The **Application URL** should be the local IP of your server for now, e.g. <code>http://192.168.x.x:8090</code>.
 
 [![Pocketbase Application Settings](/assets/configurations/pocketbase-app-settings.png)](/assets/configurations/pocketbase-app-settings.png)
-
-### Import Collections
-
-Next, head to the **Import collections** tab under the **Sync** section in the sidebar of the settings page. There, you'll find a huge textbox prompting you to paste the collection configurations. You can find the collection configurations for Lifeforge in the <code>lifeforge-api/pb_schema</code> directory. Copy all the content of the one and only <code>pb_schema.json</code> file and paste it into the textbox.
-
-[![Pocketbase Import Collections](/assets/configurations/pocketbase-import-collections.png)](/assets/configurations/pocketbase-import-collections.png)
-
-Once pasted, if everything goes well, you should be greeted with a whole list of changes that are automatically detected by the database. Scroll to the bottommost part of the page and click on the **Review** button. There will be a screen popping up showing all the diffs between the current database and the one that you're about to import.
-
-[![Pocketbase Review Changes](/assets/configurations/pocketbase-diff.png)](/assets/configurations/pocketbase-diff.png)
-
-It might look overwhelming, but since don't have anything in the database yet, there is nothing to worry about. Click on the **Confirm and Import** button to import the collections into the database.
-
-And that's it! You have successfully imported all the collections required for Lifeforge into your Pocketbase database. 
-
-### Create User
-
-But, the database setup isn't done yet, we have something else to do. Now, head to the collection page by clicking the topmost icon on the leftmost sidebar. You should see a list of collections on the left side fo your screen.
-
-[![Pocketbase Create User](/assets/configurations/pocketbase-db-screen.png)](/assets/configurations/pocketbase-db-screen.png)
-
-Click on the **users** collection, which should be located at the top of the list. Then, click on the **New Record** button at the top right corner of the screen. Fill in the details to create a user account for yourself.
-
-[![Pocketbase Create User](/assets/configurations/pocketbase-create-user.png)](/assets/configurations/pocketbase-create-user.png)
-
-For now, you just have to fill in the **email**, **password**, **username** and **name** fields. Make sure to check the **Verified** checkbox as well. Once done, click on the **Create** button at the bottom right corner of the screen.
-
-<Notes>
-You may use a completely different set of credentials from the admin account that you have just created.
-</Notes>
-
-### Setup OAuth Providers
-
-Lifeforge. provides two OAuth providers for users to sign in with: Google and Github. To set them up, click on the cog icon beside the **users** collection name and select the **Options** tab. Under the **Auth methods** section, add the credentials required for the OAuth providers.
-
-[![Pocketbase OAuth Providers](/assets/configurations/pocketbase-oauth-providers.png)](/assets/configurations/pocketbase-oauth-providers.png)
-
-
-<Notes>
-For the Google OAuth provider, you'll need to create a project in the Google Cloud console and enable the Google OAuth API. You can find the instructions [here](https://developers.google.com/identity/protocols/oauth2).
-
-For the Github OAuth provider, you'll need to create a Github OAuth app. You can find the instructions [here](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app).
-
-Make sure to point the **Redirect URL** to <code>\<YOUR_FRONTEND_SERVER_URL\>/auth</code>.
-</Notes>
 
 ### Mail Settings
 
@@ -181,7 +136,62 @@ where <code>XXXX</code> should be the port that you have set in the <code>.env.l
 If you don't plan to develop the API server, you can run the <code>bun start</code> to start the server in production mode.
 </Notes>
 
-And that's it! You have successfully configured your Lifeforge API server. Now, let's move on to the frontend configuration.
+And that's it! You have successfully configured your Lifeforge API server. Now, let's continue tackling the database configuration.
+</section>
+
+<section id="database-configuration">
+## Database Configuration
+
+Having the backend codebase setup completed, we can now proceed to configure the collections in the database using the schema files provided in the codebase, files that define the structure of the collections in the database.
+
+### Import Collections
+
+Pocketbase SDK provides us with a way to programmatically import collections schema into the database. Lifeforge codebase is structured in a way such that the collections schema of each module is stored in a file named <code>schema.json</code>, normally under the <code>database</code> directory inside each module folder. A script is provided to automatically scan through the <code>src</code> directory and import the schema of each module into the database. To run the script, execute the following command:
+
+```bash
+bun import-schema
+```
+
+If everything goes well, you should see the following message in the terminal:
+
+```plaintext
+Found xx schema files. Importing...
+Done.
+```
+
+If you see this message, then the collections schema has been successfully imported into the database. You may head to the Pocketbase dashboard to verify this.
+
+### Create User
+
+But, the database setup isn't done yet, we have something else to do. In the collection page, you should see a list of collections on the left side fo your screen.
+
+[![Pocketbase Create User](/assets/configurations/pocketbase-db-screen.png)](/assets/configurations/pocketbase-db-screen.png)
+
+Click on the **users** collection, which should be located at the top of the list. Then, click on the **New Record** button at the top right corner of the screen. Fill in the details to create a user account for yourself.
+
+[![Pocketbase Create User](/assets/configurations/pocketbase-create-user.png)](/assets/configurations/pocketbase-create-user.png)
+
+For now, you just have to fill in the **email**, **password**, **username** and **name** fields. Make sure to check the **Verified** checkbox as well. Once done, click on the **Create** button at the bottom right corner of the screen.
+
+<Notes>
+You may use a completely different set of credentials from the admin account that you have just created.
+</Notes>
+
+### Setup OAuth Providers (Optional)
+
+Lifeforge. provides two OAuth providers for users to sign in with: Google and Github. To set them up, click on the cog icon beside the **users** collection name and select the **Options** tab. Under the **Auth methods** section, add the credentials required for the OAuth providers.
+
+[![Pocketbase OAuth Providers](/assets/configurations/pocketbase-oauth-providers.png)](/assets/configurations/pocketbase-oauth-providers.png)
+
+
+<Notes>
+For the Google OAuth provider, you'll need to create a project in the Google Cloud console and enable the Google OAuth API. You can find the instructions [here](https://developers.google.com/identity/protocols/oauth2).
+
+For the Github OAuth provider, you'll need to create a Github OAuth app. You can find the instructions [here](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app).
+
+Make sure to point the **Redirect URL** to <code>\<YOUR_FRONTEND_SERVER_URL\>/auth</code>.
+</Notes>
+
 </section>
 
 <section id="frontend-configuration">
@@ -204,6 +214,7 @@ bun dev
 ```
 
 </section>
+
 
 ---
 
